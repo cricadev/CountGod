@@ -1,7 +1,12 @@
 <template>
-  <div class="w-full h-full number-container" :class="number.background">
+  <div class="w-full h-full number-container" :style="{
+    backgroundColor: number.background
+  }">
     <Transition class="row-start-1 row-end-2">
-      <div class="number " id="number" :key="number.number">{{ number.number }}</div>
+      <div v-if="Number(number.number)" class="number " id="number" :key="number.number">{{ number.number }}</div>
+      <div class="number" v-else>
+        0
+      </div>
     </Transition>
     <span class="row-start-2 row-end-3 text-center">{{ number.label }}</span>
   </div>
