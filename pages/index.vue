@@ -42,6 +42,17 @@ import { ref, reactive, computed } from "vue";
 import CountdownSegment from "@/components/CountdownSegment.vue";
 import { onMounted } from 'vue'
 
+useHead({
+  title: 'CountGod',
+  meta: [
+    {
+      { name: 'description', content: "Welcome to the best countdown app you'll ever find." }
+
+    }
+  ],
+  
+
+})
 const { date, label, computedDays, computedHours, computedMinutes, computedSeconds } = useCountdown();
 const { color, createColors, computedColorFour, computedColorThree, computedColorTwo, computedColorOne, header } = useTriadColors()
 const isEditing = ref(false)
