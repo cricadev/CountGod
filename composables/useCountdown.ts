@@ -9,9 +9,9 @@ export function useCountdown() {
 
 
   const now = ref(Date.now())
-
+  let intervalId;
   watchEffect(() => {
-    setInterval(() => {
+    intervalId = setInterval(() => {
       now.value = Date.now()
     }, 1000)
 

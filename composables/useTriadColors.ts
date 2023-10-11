@@ -1,5 +1,5 @@
 export function useTriadColors() {
-  const color = ref("#000000");
+  const color = ref("#7B61FF");
   const header = ref(null);
 
   function rgbToHsl(r, g, b) {
@@ -67,6 +67,9 @@ export function useTriadColors() {
     let [h, s, l] = rgbToHsl(...rgb);
 
     let offset = 1 / 5; // Divide the hue circle by 5
+    // Adjust saturation and lightness for a more appealing look.
+    s = Math.min(s * 0.85, 1);  // Reduce saturation by 15%
+    l = l > 0.5 ? Math.max(l * 0.9, 0) : Math.min(l * 1.1, 1); // Darken if too light, lighten if too dark
     let color1 = rgbToHex(...hslToRgb((h + offset) % 1, s, l));
     let color2 = rgbToHex(...hslToRgb((h + 2 * offset) % 1, s, l));
     let color3 = rgbToHex(...hslToRgb((h + 3 * offset) % 1, s, l));
@@ -105,7 +108,7 @@ export function useTriadColors() {
 
     colorsArray.value = [...colors]
   }
-
+  createColors();
   return {
     createColors,
     color,

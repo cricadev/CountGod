@@ -1,28 +1,30 @@
 <template>
   <div class="overflow-hidden wrapper-countdown">
+    <ColorMode class="absolute top-4 right-4"></ColorMode>
 
     <div ref="header" class="header">
-      <ColorPicker></ColorPicker>
-      <form @submit.prevent="createColors">
+      <div class="relative w-full h-16 flex justify-center">
+        <Transition>
+          <h1 v-if="!isEditing" @click="appearInput"
+            class="flex items-center justify-center gap-4 text-3xl font-zen font-normal text-center absolute top-0"> {{
+              title }}
+
+          </h1>
+          <input ref="input" v-else v-model="newTitle" @blur="changeTitle" @keyup.enter="changeTitle"
+            class="flex items-center justify-center gap-2 text-3xl font-normal text-center bg-transparent absolute top-0 focus:outline-none"
+            type="text" />
+        </Transition>
+      </div>
+      <form @submit.prevent="createColors" class="flex flex-col  gap-2 items-center">
         <input type="color" v-model="color">
         <UButton color="gray" type="submit">Create</UButton>
 
       </form>
-      <Transition>
-        <h1 v-if="!isEditing" class="flex items-center justify-center gap-2 text-3xl font-normal text-center"> {{ title }}
-          <svg @click="appearInput" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-            stroke="currentColor" class="w-20 h-20">
-            <path stroke-linecap="round" stroke-linejoin="round"
-              d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
-          </svg>
-        </h1>
-        <input v-else v-model="newTitle" @blur="changeTitle" @keyup.enter="changeTitle"
-          class="flex items-center justify-center gap-2 text-3xl font-normal text-center" type="text" />
-      </Transition>
+
 
 
       <UPopover :popper="{ placement: 'bottom-start' }">
-        <UButton icon="i-heroicons-calendar-days-20-solid" :label="label" />
+        <UButton color="gray" icon="i-heroicons-calendar-days-20-solid" :label="label" />
         <template #panel="{ close }">
           <DatePicker v-model="date" @close="close" />
         </template>
@@ -30,18 +32,21 @@
     </div>
 
 
-    <div
-      class="grid w-full h-full grid-cols-2 col-start-1 col-end-3 grid-rows-2 row-start-2 row-end-4 place-items-center">
+    <div class="grid-numbers">
       <CountdownSegment v-for=" number  in  NewYearsCountdown " :key="number.id" :number="number" />
     </div>
 
   </div>
 </template>
-<script setup>
-import { ref, reactive, computed } from "vue";
+<script setup lang="ts">
 import CountdownSegment from "@/components/CountdownSegment.vue";
 import { onMounted } from 'vue'
-
+const input = ref(null);
+watch(input, (val) => {
+  if (val) {
+    val.focus()
+  }
+})
 useHead({
   title: 'CountGod',
   meta: [
@@ -98,26 +103,32 @@ const NewYearsCountdown = reactive({
 <style  scoped>
 .v-enter-active,
 .v-leave-active {
-  transition: all 0.2s ease;
+  transition: all 0.2s ease-in-out;
 }
 
 .v-enter-from,
 .v-leave-to {
   opacity: 0;
-  transform: translateX(100%);
+
 }
 
 .v-enter-to,
 .v-leave-from {
   opacity: 1;
-  transform: translateX(0);
+
 }
 
 .wrapper-countdown {
-  @apply grid grid-rows-3 grid-cols-2 w-screen h-screen;
+  @apply grid grid-cols-2 w-screen h-screen;
+  grid-template-rows: 30% 70%;
 }
 
 .header {
-  @apply row-span-1 col-span-2 flex flex-col justify-center items-center;
+  @apply row-span-1 col-span-2 flex flex-col gap-2 justify-center items-center pt-4;
+}
+
+.grid-numbers {
+  @apply grid w-full h-full grid-cols-2 col-start-1 col-end-3 row-start-2 row-end-4 place-items-center;
+  grid-template-rows: 55% 45%;
 }
 </style>

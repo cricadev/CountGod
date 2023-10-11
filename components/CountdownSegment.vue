@@ -8,7 +8,7 @@
         0
       </div>
     </Transition>
-    <span class="row-start-2 row-end-3 text-center">{{ number.label }}</span>
+    <span class="number-label">{{ number.label }}</span>
   </div>
 </template>
 <script setup>
@@ -39,11 +39,15 @@ const props = defineProps({
 }
 
 .number {
-  @apply text-8xl font-bold text-center absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%];
+  @apply text-[11rem] h-full tracking-tight font-normal text-center absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] font-bebas;
 }
 
 .number-container {
   @apply grid justify-center items-center h-full w-full relative;
   grid-template-rows: 80% 20%;
+}
+
+.number-label {
+  @apply row-start-2 row-end-3 text-center font-bebas text-3xl;
 }
 </style>
