@@ -45,13 +45,11 @@ import { onMounted } from 'vue'
 useHead({
   title: 'CountGod',
   meta: [
-    {
-      { name: 'description', content: "Welcome to the best countdown app you'll ever find." }
 
-    }
+    { name: 'description', content: "Welcome to the best countdown app you'll ever find." }
+
+
   ],
-  
-
 })
 const { date, label, computedDays, computedHours, computedMinutes, computedSeconds } = useCountdown();
 const { color, createColors, computedColorFour, computedColorThree, computedColorTwo, computedColorOne, header } = useTriadColors()
