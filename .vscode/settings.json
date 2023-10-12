@@ -38,5 +38,7 @@
         "ngClass",
         "ui"
       ]
-    
+    ,
+    "tailwindCSS.experimental.configFile": "tailwind.config.ts"
+
 }

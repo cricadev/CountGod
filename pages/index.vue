@@ -1,17 +1,18 @@
 <template>
   <div class="overflow-hidden wrapper-countdown">
-    <ColorMode class="absolute top-4 right-4"></ColorMode>
 
     <div ref="header" class="header">
+
       <div class="relative w-full h-16 flex justify-center">
         <Transition>
           <h1 v-if="!isEditing" @click="appearInput"
-            class="flex items-center justify-center gap-4 text-3xl font-zen font-normal text-center absolute top-0"> {{
+            class="flex items-center justify-center gap-4 text-3xl font-zenDots font-normal text-center absolute top-0">
+            {{
               title }}
 
           </h1>
           <input ref="input" v-else v-model="newTitle" @blur="changeTitle" @keyup.enter="changeTitle"
-            class="flex items-center justify-center gap-2 text-3xl font-normal text-center bg-transparent absolute top-0 focus:outline-none"
+            class="flex items-center justify-center gap-2 text-3xl font-normal text-center bg-transparent absolute top-0 focus:outline-none font-zenDots"
             type="text" />
         </Transition>
       </div>
