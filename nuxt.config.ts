@@ -7,6 +7,7 @@ export default defineNuxtConfig({
     families: {
       "Zen Dots": true,
       "Bebas Neue": true,
+      "Monserrat": true,
 
     },
     display: 'swap',
@@ -15,5 +16,8 @@ export default defineNuxtConfig({
     preload: false,
     download: true,
     base64: false,
+  },
+  colorMode: {
+    preference: 'light'
   }
 })

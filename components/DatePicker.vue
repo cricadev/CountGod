@@ -11,9 +11,7 @@ const props = defineProps({
 
 const emit = defineEmits(['update:model-value', 'close'])
 
-const colorMode = useColorMode()
 
-const isDark = computed(() => colorMode.value === 'dark')
 
 const date = computed({
   get: () => props.modelValue,
@@ -35,6 +33,6 @@ const attrs = [{
 </script>
 
 <template>
-  <VCalendarDatePicker v-model="date" transparent borderless :attributes="attrs" :is-dark="isDark" title-position="left"
-    trim-weeks :first-day-of-week="2" />
+  <VCalendarDatePicker v-model="date" transparent borderless :attributes="attrs" title-position="left" trim-weeks
+    :first-day-of-week="2" />
 </template>

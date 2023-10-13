@@ -1,6 +1,6 @@
-import type { Config } from 'tailwindcss'
+const colors = require("tailwindcss/colors");
 
-export default <Partial<Config>>{
+module.exports = {
   content: [
     "./components/**/*.{js,vue,ts}",
     "./layouts/**/*.vue",
@@ -11,17 +11,28 @@ export default <Partial<Config>>{
     "./error.vue",
   ],
   theme: {
-    display: 'swap',
-    prefetch: false,
-    preconnect: false,
-    preload: false,
-    download: true,
-    base64: false,
     extend: {
-
+      colors: {
+        transparent: "transparent",
+        current: "currentColor",
+        Bg: {
+          DEFAULT: "#FFFFFF",
+          50: "#FFFFFF",
+          100: "#FFFFFF",
+          200: "#FFFFFF",
+          300: "#FFFFFF",
+          400: "#FFFFFF",
+          500: "#FFFFFF",
+          600: "#FFFFFF",
+          700: "#FFFFFF",
+          800: "#FFFFFF",
+          900: "#FFFFFF",
+        },
+      },
       fontFamily: {
         zenDots: ['Zen Dots', 'sans-serif'],
         bebasNeue: ['Bebas Neue', 'sans-serif'],
+        monserrat: ['Monserrat', 'sans-serif'],
       }
 
     },

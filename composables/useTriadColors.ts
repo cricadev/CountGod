@@ -1,7 +1,51 @@
 export function useTriadColors() {
   const color = ref("#7B61FF");
   const header = ref(null);
+  const colorsPalettes = ref([
+    [
+      '#7b61ff',
+      '#FFAC6E',
+      '#5493FF',
+      '#FFE73B',
+      '#47EBFF',
+    ],
+    [
+      '#FFCB40',
+      '#4DFFC7',
+      '#FF9833',
+      '#47EBFF',
+      '#1950FF'
 
+    ],
+    [
+      '#291AFF',
+      '#FF9326',
+      '#0C63FF',
+      '#FFDB1A',
+      '#0DC6FF'
+    ],
+    [
+      '#3EB387',
+      '#4DFFBC',
+      '#FF9940',
+      '#1B48B3',
+      '#3370FF',
+    ],
+    [
+      '#EB0C6D',
+      '#9E104E',
+      '#EBE200',
+      '#3453EB',
+      '#152C9E'
+    ],
+
+
+  ])
+  const colorsPalette = (id) => {
+    color.value = colorsPalettes.value[id][0];
+    colorsArray.value = [...colorsPalettes.value[id].slice(1)]
+
+  }
   function rgbToHsl(r, g, b) {
     r /= 255, g /= 255, b /= 255;
 
@@ -68,8 +112,8 @@ export function useTriadColors() {
 
     let offset = 1 / 5; // Divide the hue circle by 5
     // Adjust saturation and lightness for a more appealing look.
-    s = Math.min(s * 0.85, 1);  // Reduce saturation by 15%
-    l = l > 0.5 ? Math.max(l * 0.9, 0) : Math.min(l * 1.1, 1); // Darken if too light, lighten if too dark
+    // s = Math.min(s * 0.85, 1);  // Reduce saturation by 15%
+    //l = l > 0.5 ? Math.max(l * 0.9, 0) : Math.min(l * 1.1, 1); // Darken if too light, lighten if too dark
     let color1 = rgbToHex(...hslToRgb((h + offset) % 1, s, l));
     let color2 = rgbToHex(...hslToRgb((h + 2 * offset) % 1, s, l));
     let color3 = rgbToHex(...hslToRgb((h + 3 * offset) % 1, s, l));
@@ -110,6 +154,8 @@ export function useTriadColors() {
   }
   createColors();
   return {
+    colorsPalettes,
+    colorsPalette,
     createColors,
     color,
     computedColorOne,

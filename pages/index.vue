@@ -6,7 +6,7 @@
       <div class="relative w-full h-16 flex justify-center">
         <Transition>
           <h1 v-if="!isEditing" @click="appearInput"
-            class="flex items-center justify-center gap-4 text-3xl font-zenDots font-normal text-center absolute top-0">
+            class="flex items-center justify-center gap-4 text-3xl font-zenDots font-normal text-center absolute top-0 text-white dark:text-white">
             {{
               title }}
 
@@ -16,25 +16,43 @@
             type="text" />
         </Transition>
       </div>
-      <form @submit.prevent="createColors" class="flex flex-col  gap-2 items-center">
-        <input type="color" v-model="color">
-        <UButton color="gray" type="submit">Create</UButton>
-
-      </form>
+      <div class="colors-palettes flex gap-1">
+        <div class="w-12 h-12 rounded-full bg-white" @click="colorsPalette(index)"
+          v-for="(item, index) in colorsPalettes"></div>
 
 
+        <label for="color" class="border-2 text-base w-12 h-12 bg-transparent rounded-full grid place-items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+            <path fill-rule="evenodd"
+              d="M12 3.75a.75.75 0 01.75.75v6.75h6.75a.75.75 0 010 1.5h-6.75v6.75a.75.75 0 01-1.5 0v-6.75H4.5a.75.75 0 010-1.5h6.75V4.5a.75.75 0 01.75-.75z"
+              clip-rule="evenodd" />
+          </svg>
 
-      <UPopover :popper="{ placement: 'bottom-start' }">
-        <UButton color="gray" icon="i-heroicons-calendar-days-20-solid" :label="label" />
-        <template #panel="{ close }">
-          <DatePicker v-model="date" @close="close" />
-        </template>
-      </UPopover>
+        </label>
+        <input type="color" v-model="color" id="color" @input="createColors" class="opacity-0 pointer-events-none">
+      </div>
+
+
+
+
+      <div class="flex gap-4">
+
+        <UPopover :popper="{ placement: 'bottom-start' }">
+          <UButton color="primary" class=" text-base" icon="i-heroicons-calendar-days-20-solid" :label="label" />
+
+          <template #panel="{ close }">
+            <DatePicker v-model="date" @close="close" />
+          </template>
+
+        </UPopover>
+        <UButton color="primary" variant="ghost" icon="i-heroicons-sparkles-20-solid" class="text-base"
+          label="Random date" />
+      </div>
     </div>
 
 
     <div class="grid-numbers">
-      <CountdownSegment v-for=" number  in  NewYearsCountdown " :key="number.id" :number="number" />
+      <CountdownSegment v-for="      number       in       NewYearsCountdown      " :key="number.id" :number="number" />
     </div>
 
   </div>
@@ -43,6 +61,18 @@
 import CountdownSegment from "@/components/CountdownSegment.vue";
 import { onMounted } from 'vue'
 const input = ref(null);
+
+const randomDates = [
+  {
+    "Wooo, Halloween!": new Date('October 31')
+  },
+  {
+    'Christmas is coming!': new Date('December 25')
+  },
+  {
+    'New Year, new me!': new Date('December 31, 11:59:59')
+  },
+]
 watch(input, (val) => {
   if (val) {
     val.focus()
@@ -58,7 +88,7 @@ useHead({
   ],
 })
 const { date, label, computedDays, computedHours, computedMinutes, computedSeconds } = useCountdown();
-const { color, createColors, computedColorFour, computedColorThree, computedColorTwo, computedColorOne, header } = useTriadColors()
+const { colorsPalettes, colorsPalette, color, createColors, computedColorFour, computedColorThree, computedColorTwo, computedColorOne, header } = useTriadColors()
 const isEditing = ref(false)
 const newTitle = ref("");
 const title = ref("Name the ocassion you want to track");

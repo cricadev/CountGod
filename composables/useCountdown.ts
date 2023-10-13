@@ -1,7 +1,8 @@
 export function useCountdown() {
 
-  const date = ref(new Date())
-  const label = computed(() => date.value.toLocaleDateString('en-us', { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' })
+  const date = ref('Pick a date')
+
+  const label = computed(() => typeof date.value === 'string' ? date.value : date.value.toLocaleDateString('en-us', { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' })
   )
   // initialize components based on data attribute selectors
 
