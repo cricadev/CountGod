@@ -46,7 +46,7 @@
 
         </UPopover>
         <UButton color="primary" variant="ghost" icon="i-heroicons-sparkles-20-solid" class="text-base"
-          label="Random date" />
+          label="Random date" @click="selectRandomDate" />
       </div>
     </div>
 
@@ -62,17 +62,7 @@ import CountdownSegment from "@/components/CountdownSegment.vue";
 import { onMounted } from 'vue'
 const input = ref(null);
 
-const randomDates = [
-  {
-    "Wooo, Halloween!": new Date('October 31')
-  },
-  {
-    'Christmas is coming!': new Date('December 25')
-  },
-  {
-    'New Year, new me!': new Date('December 31, 11:59:59')
-  },
-]
+
 watch(input, (val) => {
   if (val) {
     val.focus()
@@ -87,22 +77,8 @@ useHead({
 
   ],
 })
-const { date, label, computedDays, computedHours, computedMinutes, computedSeconds } = useCountdown();
+const { date, label, computedDays, computedHours, computedMinutes, computedSeconds, isEditing, appearInput, changeTitle, newTitle, title, selectRandomDate } = useCountdown();
 const { colorsPalettes, colorsPalette, color, createColors, computedColorFour, computedColorThree, computedColorTwo, computedColorOne, header } = useTriadColors()
-const isEditing = ref(false)
-const newTitle = ref("");
-const title = ref("Name the ocassion you want to track");
-
-const appearInput = () => {
-  isEditing.value = true;
-
-}
-const changeTitle = () => {
-  if (newTitle.value.length < 3) return;
-  title.value = newTitle.value;
-  isEditing.value = false;
-}
-
 
 const NewYearsCountdown = reactive({
   days: {
