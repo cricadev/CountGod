@@ -16,8 +16,8 @@
             type="text" />
         </Transition>
       </div>
-      <div class="colors-palettes flex gap-1">
-        <div class="w-12 h-12 rounded-full bg-white" @click="colorsPalette(index)"
+      <div class="colors-palettes flex gap-1 relative">
+        <div class="w-12 h-12 rounded-full bg-white" :id="'color-palette--' + index" @click="colorsPalette(index)"
           v-for="(item, index) in colorsPalettes"></div>
 
 
@@ -29,7 +29,8 @@
           </svg>
 
         </label>
-        <input type="color" v-model="color" id="color" @input="createColors" class="opacity-0 pointer-events-none">
+        <input type="color" v-model="color" id="color" @input="createColors"
+          class="opacity-0 pointer-events-none absolute top-0 right-0">
       </div>
 
 
@@ -52,17 +53,14 @@
 
 
     <div class="grid-numbers">
-      <CountdownSegment v-for="      number       in       NewYearsCountdown      " :key="number.id" :number="number" />
+      <CountdownSegment v-for="number in NewYearsCountdown" :key="number.id" :number="number" />
     </div>
 
   </div>
 </template>
 <script setup lang="ts">
 import CountdownSegment from "@/components/CountdownSegment.vue";
-import { onMounted } from 'vue'
 const input = ref(null);
-
-
 watch(input, (val) => {
   if (val) {
     val.focus()
@@ -71,10 +69,7 @@ watch(input, (val) => {
 useHead({
   title: 'CountGod',
   meta: [
-
     { name: 'description', content: "Welcome to the best countdown app you'll ever find." }
-
-
   ],
 })
 const { date, label, computedDays, computedHours, computedMinutes, computedSeconds, isEditing, appearInput, changeTitle, newTitle, title, selectRandomDate } = useCountdown();
@@ -137,5 +132,29 @@ const NewYearsCountdown = reactive({
 .grid-numbers {
   @apply grid w-full h-full grid-cols-2 col-start-1 col-end-3 row-start-2 row-end-4 place-items-center;
   grid-template-rows: 55% 45%;
+}
+
+#color-palette--0 {
+  /*background: rgb(123, 97, 255);
+  background: radial-gradient(circle, rgba(123, 97, 255, 1) 0%, rgba(255, 172, 110, 1) 25%, rgba(84, 147, 255, 1) 50%, rgba(255, 231, 59, 1) 75%, rgba(71, 235, 255, 1) 100%);
+  */
+  background: rgb(123, 97, 255);
+  background: linear-gradient(90deg, rgba(123, 97, 255, 1) 0%, rgba(255, 172, 110, 1) 25%, rgba(84, 147, 255, 1) 50%, rgba(255, 231, 59, 1) 75%, rgba(71, 235, 255, 1) 100%);
+}
+
+#color-palette--1 {
+  background: linear-gradient(90deg, #FFCB40 0%, #4DFFC7 25%, #FF9833 50%, #47EBFF 75%, #1950FF 100%);
+}
+
+#color-palette--2 {
+  background: linear-gradient(90deg, #291AFF 0%, #FF9326 25%, #0C63FF 50%, #FFDB1A 75%, #0DC6FF 100%);
+}
+
+#color-palette--3 {
+  background: linear-gradient(90deg, #3EB387 0%, #4DFFBC 25%, #FF9940 50%, #1B48B3 75%, #3370FF 100%);
+}
+
+#color-palette--4 {
+  background: linear-gradient(90deg, #EB0C6D 0%, #9E104E 25%, #EBE200 50%, #3453EB 75%, #152C9E 100%);
 }
 </style>

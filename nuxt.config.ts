@@ -5,8 +5,8 @@ export default defineNuxtConfig({
 
   googleFonts: {
     families: {
-      "Zen Dots": true,
-      "Bebas Neue": true,
+      "Zen Dots": [400],
+      "Bebas Neue": [400],
       "Monserrat": true,
 
     },

@@ -29,15 +29,50 @@ export function useCountdown() {
     {
       'Christmas is coming!': new Date(`${currentYear}-12-25`)
     },
+
     {
-      'New Year, new me!': new Date(`${currentYear}-12-31T23:59:59`)
+      'Valentine\'s Day vibes!': new Date(`${currentYear}-02-14`)
+    },
+    {
+      'Happy Easter!': new Date(`${currentYear}-04-04`) // This is just a generic date. Easter date changes every year.
+    },
+    {
+      'Happy Independence Day (US)!': new Date(`${currentYear}-07-04`)
+    },
+    {
+      'Happy Diwali!': new Date(`${currentYear}-11-04`) // Diwali dates change every year based on the lunar calendar.
+    },
+    {
+      'Happy Hanukkah!': new Date(`${currentYear}-11-29`) // Hanukkah dates change every year based on the lunar calendar.
+    },
+    {
+      'Eid Mubarak!': new Date(`${currentYear}-05-13`) // Eid al-Fitr dates change every year based on the lunar calendar.
+    },
+    {
+      'Happy Thanksgiving (US)!': new Date(`${currentYear}-11-25`) // Fourth Thursday of November
     },
   ];
 
-  console.log(randomDates[Math.floor(Math.random() * randomDates.length)]);
+  randomDates.forEach((dateObj) => {
+    const date = Object.values(dateObj)[0];
+    if (date < new Date()) {
+      date.setFullYear(currentYear + 1);
+    }
+  });
+
+
 
   const selectRandomDate = () => {
-    const randomDate = randomDates[Math.floor(Math.random() * randomDates.length)];
+    const randomDateDoesntRepeatThePreviousOne = () => {
+      const randomDate = randomDates[Math.floor(Math.random() * randomDates.length)];
+      const randomDateKey = Object.keys(randomDate)[0];
+      if (randomDateKey === title.value) {
+        return randomDateDoesntRepeatThePreviousOne();
+      }
+      return randomDate;
+    }
+    const randomDate = randomDateDoesntRepeatThePreviousOne();
+
     const randomDateKey = Object.keys(randomDate)[0];
     const randomDateValue = randomDate[randomDateKey];
     date.value = randomDateValue;
