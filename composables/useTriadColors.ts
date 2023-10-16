@@ -41,6 +41,15 @@ export function useTriadColors() {
 
 
   ])
+  const createPalette = () => {
+    const newColorPalette = [color.value, ...quintColors(hexToRgb(color.value))];
+    if (colorsPalettes.value.length < 6) {
+      colorsPalettes.value.push(newColorPalette);
+    } else {
+      colorsPalettes.value[colorsPalettes.value.length - 1] = newColorPalette;
+    }
+  };
+
   const colorsPalette = (id) => {
     color.value = colorsPalettes.value[id][0];
     colorsArray.value = [...colorsPalettes.value[id].slice(1)]
@@ -162,6 +171,7 @@ export function useTriadColors() {
     computedColorTwo,
     computedColorThree,
     computedColorFour,
-    header
+    header,
+    createPalette
   }
 }

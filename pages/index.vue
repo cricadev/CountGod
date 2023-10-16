@@ -1,7 +1,7 @@
 <template>
   <div class="overflow-hidden wrapper-countdown">
 
-    <div ref="header" class="header">
+    <div ref="header" class="header h-full">
 
       <div class="relative w-full h-16 flex justify-center">
         <Transition>
@@ -17,8 +17,13 @@
         </Transition>
       </div>
       <div class="colors-palettes flex gap-1 relative">
-        <div class="w-12 h-12 rounded-full bg-white" :id="'color-palette--' + index" @click="colorsPalette(index)"
-          v-for="(item, index) in colorsPalettes"></div>
+        <div
+          class="w-12 h-12 rounded-full bg-white grid grid-cols-2 grid-rows-2 overflow-hidden relative hover:scale-110 hover:border-2 hover:border-white transition-all duration-200"
+          :id="'color-palette--' + index" @click="colorsPalette(index)" v-for="(item, index) in colorsPalettes">
+          <div class="color-palette" :style="'background:' + i" :id="'color--' + ind" v-for="(i, ind) in item">
+
+          </div>
+        </div>
 
 
         <label for="color" class="border-2 text-base w-12 h-12 bg-transparent rounded-full grid place-items-center">
@@ -29,7 +34,7 @@
           </svg>
 
         </label>
-        <input type="color" v-model="color" id="color" @input="createColors"
+        <input type="color" v-model="color" id="color" @input="handlePaletteCreation"
           class="opacity-0 pointer-events-none absolute top-0 right-0">
       </div>
 
@@ -39,14 +44,15 @@
       <div class="flex gap-4">
 
         <UPopover :popper="{ placement: 'bottom-start' }">
-          <UButton color="primary" class=" text-base" icon="i-heroicons-calendar-days-20-solid" :label="label" />
+          <UButton color="primary" class=" text-base tracking-wider" icon="i-heroicons-calendar-days-20-solid"
+            :label="label" />
 
           <template #panel="{ close }">
             <DatePicker v-model="date" @close="close" />
           </template>
 
         </UPopover>
-        <UButton color="primary" variant="ghost" icon="i-heroicons-sparkles-20-solid" class="text-base"
+        <UButton color="primary" variant="ghost" icon="i-heroicons-sparkles-20-solid" class=" text-base tracking-wider"
           label="Random date" @click="selectRandomDate" />
       </div>
     </div>
@@ -61,6 +67,12 @@
 <script setup lang="ts">
 import CountdownSegment from "@/components/CountdownSegment.vue";
 const input = ref(null);
+const selected = ref(false);
+const handlePaletteCreation = () => {
+  createPalette();
+  createColors();
+}
+defineEmits(['create-palette'])
 watch(input, (val) => {
   if (val) {
     val.focus()
@@ -73,7 +85,7 @@ useHead({
   ],
 })
 const { date, label, computedDays, computedHours, computedMinutes, computedSeconds, isEditing, appearInput, changeTitle, newTitle, title, selectRandomDate } = useCountdown();
-const { colorsPalettes, colorsPalette, color, createColors, computedColorFour, computedColorThree, computedColorTwo, computedColorOne, header } = useTriadColors()
+const { colorsPalettes, colorsPalette, color, createColors, computedColorFour, computedColorThree, computedColorTwo, computedColorOne, header, createPalette } = useTriadColors()
 
 const NewYearsCountdown = reactive({
   days: {
@@ -126,12 +138,36 @@ const NewYearsCountdown = reactive({
 }
 
 .header {
-  @apply row-span-1 col-span-2 flex flex-col gap-2 justify-center items-center pt-4;
+  @apply row-start-1 row-end-auto col-span-2 flex flex-col gap-8 justify-center items-center;
 }
 
 .grid-numbers {
   @apply grid w-full h-full grid-cols-2 col-start-1 col-end-3 row-start-2 row-end-4 place-items-center;
   grid-template-rows: 55% 45%;
+}
+
+.color-palette {
+  @apply h-full w-full;
+}
+
+#color--0 {
+  @apply rounded-b-full col-start-1 col-end-3 row-start-2 row-end-3;
+}
+
+#color--1 {
+  @apply col-start-1 col-end-2 row-start-1 row-end-2 absolute h-1/2 bottom-0 left-0;
+}
+
+#color--2 {
+  @apply top-0 left-0 absolute col-start-1 col-end-2 row-start-1 row-end-2 h-1/2;
+}
+
+#color--3 {
+  @apply rounded-tr-full col-start-2 col-end-3 row-start-1 row-end-2 top-0 right-0 absolute h-1/2;
+}
+
+#color--4 {
+  @apply col-start-2 col-end-3 row-start-1 row-end-2 bottom-0 right-0 absolute h-1/2;
 }
 
 #color-palette--0 {
