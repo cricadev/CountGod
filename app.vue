@@ -6,13 +6,13 @@
       <div class="relative w-full h-16 flex justify-center col-start-1 col-end-3">
         <Transition>
           <h1 v-if="!isEditing" @click="appearInput"
-            class="flex items-center  gap-4 text-3xl font-zenDots font-normal text-center lg:justify-start lg:items-start lg:text-start absolute top-0 text-white dark:text-white 2xl:text-4xl w-full">
+            class="flex items-center  gap-4 text-3xl font-zenDots font-normal text-center lg:justify-start lg:items-start lg:text-start absolute top-0 text-white dark:text-white 2xl:text-7xl w-full justify-center lg:text-5xl">
             {{
               title }}
 
           </h1>
           <input ref="input" v-else v-model="newTitle" @blur="changeTitle" @keyup.enter="changeTitle"
-            class="flex items-center lg:justify-start  gap-4 text-3xl font-normal text-center lg:text-start bg-transparent absolute top-0 focus:outline-none font-zenDots 2xl:text-4xl w-full"
+            class="flex items-center lg:justify-start  gap-4 text-3xl font-normal text-center lg:text-start bg-transparent absolute top-0 focus:outline-none font-zenDots  w-full justify-center 2xl:text-7xl lg:text-5xl"
             type="text" />
         </Transition>
       </div>
@@ -173,7 +173,7 @@ const NewYearsCountdown = reactive({
 }
 
 .header {
-  @apply row-start-1 row-end-auto col-span-2 flex flex-col gap-8 justify-center items-center lg:col-span-3 lg:row-start-1 lg:row-end-2 lg:col-start-1 lg:col-end-2 lg:items-start lg:grid lg:grid-rows-4 lg:grid-cols-2 lg:p-8;
+  @apply row-start-1 row-end-auto col-span-2 flex flex-col gap-8 justify-center items-center lg:col-span-3 lg:row-start-1 lg:row-end-2 lg:col-start-1 lg:col-end-2 lg:items-start lg:grid lg:grid-rows-4 lg:grid-cols-2 lg:p-8 2xl:p-12;
 }
 
 .grid-numbers {
@@ -206,13 +206,13 @@ const NewYearsCountdown = reactive({
 }
 
 #number--3 .number-label {
-  @apply lg:col-start-2 lg:col-end-3 lg:row-start-1 lg:row-end-2 lg:text-9xl xl:text-[10rem] 2xl:text-[15rem] lg:leading-[0.8] lg:place-self-end;
+  @apply lg:col-start-2 lg:col-end-3 lg:row-start-1 lg:row-end-2 lg:text-9xl xl:text-[10rem] 2xl:text-[15rem] lg:leading-[0.8] 3xl:text-[20rem];
   word-break: break-all;
   hyphens: auto;
 }
 
 #number--4 .number-label {
-  @apply lg:col-start-2 lg:col-end-3 lg:row-start-1 lg:row-end-2 lg:text-9xl xl:text-[10rem] 2xl:text-[14rem] lg:leading-[0.8] lg:place-self-end;
+  @apply lg:col-start-2 lg:col-end-3 lg:row-start-1 lg:row-end-2 lg:text-9xl xl:text-[10rem] 2xl:text-[14rem] lg:leading-[0.8] 3xl:text-[20rem];
   word-break: break-all;
   hyphens: auto;
 }
@@ -231,7 +231,7 @@ const NewYearsCountdown = reactive({
 
 #number--3 .number,
 #number--4 .number {
-  @apply lg:col-start-1 lg:col-end-2 lg:row-start-1 lg:row-end-2 lg:text-[20rem] xl:text-[22rem] 2xl:text-[30rem] self-end;
+  @apply lg:col-start-1 lg:col-end-2 lg:row-start-1 lg:row-end-2 lg:text-[20rem] xl:text-[22rem] 2xl:text-[30rem] self-end 3xl:text-[35rem];
 }
 
 

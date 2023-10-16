@@ -39,7 +39,7 @@ const props = defineProps({
 }
 
 .number {
-  @apply text-[11rem] sm:text-[15rem] h-full w-full tracking-tight font-normal text-center absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] font-bebasNeue text-white lg:text-[15rem] lg:relative xl:text-[18rem] 2xl:text-[22rem];
+  @apply text-[11rem] sm:text-[15rem] h-full w-full tracking-tight font-normal text-center absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] font-bebasNeue text-white lg:text-[15rem] lg:relative xl:text-[18rem] 2xl:text-[22rem] 3xl:text-[30rem];
 }
 
 .number-container {

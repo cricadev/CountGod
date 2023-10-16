@@ -33,7 +33,10 @@ module.exports = {
         zenDots: ['Zen Dots', 'sans-serif'],
         bebasNeue: ['Bebas Neue', 'sans-serif'],
         monserrat: ['Monserrat', 'sans-serif'],
-      }
+      },
+      screens: {
+        '3xl': '1922px',
+      },
 
     },
   }
