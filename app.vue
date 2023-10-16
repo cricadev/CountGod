@@ -212,7 +212,7 @@ const NewYearsCountdown = reactive({
 }
 
 #number--4 .number-label {
-  @apply lg:col-start-2 lg:col-end-3 lg:row-start-1 lg:row-end-2 lg:text-9xl xl:text-[10rem] 2xl:text-[14rem] lg:leading-[0.8] 3xl:text-[20rem];
+  @apply lg:col-start-2 lg:col-end-3 lg:row-start-1 lg:row-end-2 lg:text-9xl xl:text-[10rem] 2xl:text-[14rem] lg:leading-[0.8] 3xl:text-[19rem];
   word-break: break-all;
   hyphens: auto;
 }
