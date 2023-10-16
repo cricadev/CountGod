@@ -3,20 +3,20 @@
 
     <div ref="header" class="header h-full">
 
-      <div class="relative w-full h-16 flex justify-center">
+      <div class="relative w-full h-16 flex justify-center col-start-1 col-end-3">
         <Transition>
           <h1 v-if="!isEditing" @click="appearInput"
-            class="flex items-center justify-center gap-4 text-3xl font-zenDots font-normal text-center absolute top-0 text-white dark:text-white">
+            class="flex items-center  gap-4 text-3xl font-zenDots font-normal text-center lg:justify-start lg:items-start lg:text-start absolute top-0 text-white dark:text-white 2xl:text-4xl w-full">
             {{
               title }}
 
           </h1>
           <input ref="input" v-else v-model="newTitle" @blur="changeTitle" @keyup.enter="changeTitle"
-            class="flex items-center justify-center gap-2 text-3xl font-normal text-center bg-transparent absolute top-0 focus:outline-none font-zenDots"
+            class="flex items-center lg:justify-start  gap-4 text-3xl font-normal text-center lg:text-start bg-transparent absolute top-0 focus:outline-none font-zenDots 2xl:text-4xl w-full"
             type="text" />
         </Transition>
       </div>
-      <div class="colors-palettes flex gap-1 relative">
+      <div class="row-start-3 row-end-5 col-start-1 col-end-3 colors-palettes flex gap-1 relative">
         <div :class="{
           'border-white scale-110': selected[index],
           'border-transparent': !selected[index]
@@ -28,10 +28,16 @@
           </div>
         </div>
         <label for="color" class="border-2 text-base w-12 h-12 bg-transparent rounded-full grid place-items-center">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+          <svg v-if="colorsPalettes.length < 6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#fff"
+            class="w-6 h-6 ">
             <path fill-rule="evenodd"
               d="M12 3.75a.75.75 0 01.75.75v6.75h6.75a.75.75 0 010 1.5h-6.75v6.75a.75.75 0 01-1.5 0v-6.75H4.5a.75.75 0 010-1.5h6.75V4.5a.75.75 0 01.75-.75z"
               clip-rule="evenodd" />
+          </svg>
+          <svg v-else xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+            stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
           </svg>
 
         </label>
@@ -39,10 +45,7 @@
           class="opacity-0 pointer-events-none absolute top-0 right-0">
       </div>
 
-
-
-
-      <div class="flex gap-4">
+      <div class="flex gap-4 row-start-4 row-end-5 col-start-1 col-end-3 ">
 
         <UPopover :popper="{ placement: 'bottom-start' }">
           <UButton color="primary" class=" text-base tracking-wider" icon="i-heroicons-calendar-days-20-solid"
@@ -53,7 +56,7 @@
           </template>
 
         </UPopover>
-        <UButton color="primary" variant="ghost" icon="i-heroicons-sparkles-20-solid" class=" text-base tracking-wider"
+        <UButton color="primary" variant="ghost" icon="i-heroicons-sparkles-20-solid" class=" text-base tracking-wider "
           label="Random date" @click="selectRandomDate" />
       </div>
     </div>
@@ -67,6 +70,7 @@
 </template>
 <script setup lang="ts">
 import CountdownSegment from "@/components/CountdownSegment.vue";
+import { select } from "@nuxt/ui";
 const input = ref(null);
 const selected = ref([
   false,
@@ -76,6 +80,9 @@ const selected = ref([
   false,
   false,
 ]);
+onMounted(() => {
+  selected.value[0] = true;
+})
 const handleSelection = (ind) => {
   selected.value[ind] = true;
   selected.value.find((item, index) => {
@@ -166,7 +173,7 @@ const NewYearsCountdown = reactive({
 }
 
 .header {
-  @apply row-start-1 row-end-auto col-span-2 flex flex-col gap-8 justify-center items-center lg:col-span-3 lg:row-start-1 lg:row-end-2 lg:col-start-1 lg:col-end-2;
+  @apply row-start-1 row-end-auto col-span-2 flex flex-col gap-8 justify-center items-center lg:col-span-3 lg:row-start-1 lg:row-end-2 lg:col-start-1 lg:col-end-2 lg:items-start lg:grid lg:grid-rows-4 lg:grid-cols-2 lg:p-8;
 }
 
 .grid-numbers {
@@ -179,10 +186,6 @@ const NewYearsCountdown = reactive({
   }
 }
 
-.number-container {
-  @apply grid justify-center items-center h-full w-full relative;
-  grid-template-rows: 80% 20%;
-}
 
 #number--1 {
   @apply lg:col-start-3 lg:col-end-4 lg:row-start-1 lg:row-end-2;
@@ -192,7 +195,8 @@ const NewYearsCountdown = reactive({
   @apply lg:col-start-4 lg:col-end-5 lg:row-start-1 lg:row-end-2;
 }
 
-#number--3 {
+#number--3,
+#number--4 {
   @apply lg:col-start-1 lg:col-end-3 lg:row-start-2 lg:row-end-3 lg:grid lg:h-full lg:w-full;
 
   @media (min-width: 1024px) {
@@ -201,24 +205,33 @@ const NewYearsCountdown = reactive({
   }
 }
 
-#number--3 .number-label,
+#number--3 .number-label {
+  @apply lg:col-start-2 lg:col-end-3 lg:row-start-1 lg:row-end-2 lg:text-9xl xl:text-[10rem] 2xl:text-[15rem] lg:leading-[0.8] lg:place-self-end;
+  word-break: break-all;
+  hyphens: auto;
+}
+
 #number--4 .number-label {
-  @apply lg:col-start-2 lg:col-end-3 lg:row-start-1 lg:row-end-2 lg:text-9xl xl:text-[10rem] 2xl:text-[18rem] lg:leading-[0.8] place-self-end;
+  @apply lg:col-start-2 lg:col-end-3 lg:row-start-1 lg:row-end-2 lg:text-9xl xl:text-[10rem] 2xl:text-[14rem] lg:leading-[0.8] lg:place-self-end;
   word-break: break-all;
   hyphens: auto;
 }
 
 #number--3 .number-label::before,
 #number--4 .number-label::before {
-  content: "-";
-  display: inline-block;
-  white-space: pre-wrap;
-  float: right;
+  @media (min-width: 1024px) {
+
+    content: "-";
+    display: inline-block;
+    white-space: pre-wrap;
+    float: right;
+  }
+
 }
 
 #number--3 .number,
 #number--4 .number {
-  @apply lg:col-start-1 lg:col-end-2 lg:row-start-1 lg:row-end-2;
+  @apply lg:col-start-1 lg:col-end-2 lg:row-start-1 lg:row-end-2 lg:text-[20rem] xl:text-[22rem] 2xl:text-[30rem] self-end;
 }
 
 
