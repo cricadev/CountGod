@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-full number-container" :style="{
+  <div class="w-full h-full number-container" :id="'number--' + number.id" :style="{
     backgroundColor: number.background
   }">
     <Transition class="row-start-1 row-end-2">
@@ -39,7 +39,7 @@ const props = defineProps({
 }
 
 .number {
-  @apply text-[11rem] h-full tracking-tight font-normal text-center absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] font-bebasNeue text-white;
+  @apply text-[11rem] h-full tracking-tight font-normal text-center absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] font-bebasNeue text-white lg:text-[15rem] lg:relative xl:text-[18rem] 2xl:text-[22rem];
 }
 
 .number-container {
@@ -48,6 +48,6 @@ const props = defineProps({
 }
 
 .number-label {
-  @apply row-start-2 row-end-3 text-center font-bebasNeue text-3xl text-white;
+  @apply row-start-2 row-end-3 text-center font-bebasNeue text-3xl text-white lg:text-8xl;
 }
 </style>
