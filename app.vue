@@ -160,7 +160,11 @@ const NewYearsCountdown = reactive({
 
 .wrapper-countdown {
   @apply grid grid-cols-2 w-screen h-screen lg:grid-cols-3 lg:grid-rows-2;
-  grid-template-rows: 30% 70%;
+  grid-template-rows: 40% 60%;
+
+  @media (min-width: 400px) {
+    grid-template-rows: 30% 70%;
+  }
 
   @media (min-width: 1024px) {
     grid-template-rows: 50% 50%;
