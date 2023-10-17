@@ -3,10 +3,10 @@
     backgroundColor: number.background
   }">
     <Transition class="row-start-1 row-end-2">
-      <div v-if="Number(number.number)" class="number " id="number" :key="number.number">{{ number.number }}</div>
-      <div class="number" v-else>
+      <span v-if="Number(number.number)" class="number " id="number" :key="number.number">{{ number.number }}</span>
+      <span class="number" v-else>
         0
-      </div>
+      </span>
     </Transition>
     <span class="number-label">{{ number.label }}</span>
   </div>
@@ -39,15 +39,15 @@ const props = defineProps({
 }
 
 .number {
-  @apply text-[11rem] sm:text-[15rem] h-full w-full tracking-tight font-normal text-center absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] font-bebasNeue text-white lg:text-[15rem] lg:relative xl:text-[18rem] 2xl:text-[22rem] 3xl:text-[30rem];
+  @apply text-[11rem] sm:text-[15rem] tracking-tight font-normal text-center translate-x-[-50%] translate-y-[-50%] font-bebasNeue text-white lg:text-[15rem] xl:text-[18rem] 2xl:text-[22rem] 3xl:text-[30rem] absolute top-1/2 left-1/2;
 }
 
 .number-container {
-  @apply grid place-items-center h-full w-full relative;
-  grid-template-rows: 80% 20%;
+  @apply lg:place-items-center h-full w-full relative lg:grid;
+
 }
 
 .number-label {
-  @apply row-start-2 row-end-3 text-center font-bebasNeue text-3xl text-white lg:text-8xl sm:text-5xl;
+  @apply text-center font-bebasNeue text-3xl text-white lg:text-8xl sm:text-5xl absolute bottom-0 left-1/2 translate-x-[-50%];
 }
 </style>
