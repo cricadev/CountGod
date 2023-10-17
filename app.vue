@@ -3,20 +3,19 @@
 
     <div ref="header" class="header h-full">
 
-      <div class="relative w-full h-16 flex justify-center col-start-1 col-end-3">
-        <Transition>
-          <h1 v-if="!isEditing" @click="appearInput"
-            class="flex items-center  gap-4 text-3xl font-zenDots font-normal text-center lg:justify-start lg:items-start lg:text-start absolute top-0 text-white dark:text-white 2xl:text-7xl w-full justify-center lg:text-5xl">
-            {{
-              title }}
+      <Transition>
+        <h1 v-if="!isEditing" @click="appearInput"
+          class="flex items-center  gap-4 text-3xl font-zenDots font-normal text-center lg:justify-start lg:items-start lg:text-start  text-white dark:text-white 2xl:text-7xl w-full justify-center lg:text-5xl col-start-1 col-end-3 row-start-1 row-end-3 place-self-center ">
+          {{
+            title }}
 
-          </h1>
-          <input ref="input" v-else v-model="newTitle" @blur="changeTitle" @keyup.enter="changeTitle"
-            class="flex items-center lg:justify-start  gap-4 text-3xl font-normal text-center lg:text-start bg-transparent absolute top-0 focus:outline-none font-zenDots  w-full justify-center 2xl:text-7xl lg:text-5xl"
-            type="text" />
-        </Transition>
-      </div>
-      <div class="row-start-3 row-end-5 col-start-1 col-end-3 colors-palettes flex gap-1 relative">
+        </h1>
+        <input ref="input" v-else v-model="newTitle" @blur="changeTitle" @keyup.enter="changeTitle"
+          class="flex items-center lg:justify-start  gap-4 text-3xl font-normal text-center lg:text-start bg-transparent  focus:outline-none font-zenDots  w-full justify-center 2xl:text-7xl lg:text-5xl col-start-1 col-end-3 row-start-1 row-end-3 place-self-center"
+          type="text" />
+      </Transition>
+      <div
+        class="row-start-3 row-end-4 col-start-1 col-end-3 colors-palettes flex gap-1 relative self-end justify-self-start">
         <div :class="{
           'border-white scale-110': selected[index],
           'border-transparent': !selected[index]
@@ -45,7 +44,7 @@
           class="opacity-0 pointer-events-none absolute top-0 right-0">
       </div>
 
-      <div class="flex gap-4 row-start-4 row-end-5 col-start-1 col-end-3 ">
+      <div class="flex gap-4 row-start-4 row-end-5 col-start-1 col-end-3 justify-self-start">
 
         <UPopover :popper="{ placement: 'bottom-start' }">
           <UButton color="primary" class=" text-base tracking-wider" icon="i-heroicons-calendar-days-20-solid"
@@ -173,7 +172,7 @@ const NewYearsCountdown = reactive({
 }
 
 .header {
-  @apply row-start-1 row-end-auto col-span-2 flex flex-col gap-8 justify-center items-center lg:col-span-3 lg:row-start-1 lg:row-end-2 lg:col-start-1 lg:col-end-2 lg:items-start lg:grid lg:grid-rows-4 lg:grid-cols-2 lg:p-8 2xl:p-12;
+  @apply row-start-1 row-end-auto col-span-2 flex flex-col justify-center items-center lg:col-span-3 lg:row-start-1 lg:row-end-2 lg:col-start-1 lg:col-end-2 lg:items-start lg:grid lg:grid-rows-4 lg:grid-cols-2 place-items-center gap-4 px-8;
 }
 
 .grid-numbers {
@@ -206,13 +205,13 @@ const NewYearsCountdown = reactive({
 }
 
 #number--3 .number-label {
-  @apply lg:col-start-2 lg:col-end-3 lg:row-start-1 lg:row-end-2 lg:text-9xl xl:text-[10rem] 2xl:text-[15rem] lg:leading-[0.8] 3xl:text-[19rem] lg:relative;
+  @apply lg:col-start-2 lg:col-end-3 lg:row-start-1 lg:row-end-2 lg:text-9xl xl:text-[9rem] 2xl:text-[12rem] lg:leading-[0.8] 3xl:text-[19rem] lg:relative;
   word-break: break-all;
   hyphens: auto;
 }
 
 #number--4 .number-label {
-  @apply lg:col-start-2 lg:col-end-3 lg:row-start-1 lg:row-end-2 xl:text-[10rem] 2xl:text-[14rem] lg:leading-[0.8] 3xl:text-[19rem] lg:relative;
+  @apply lg:col-start-2 lg:col-end-3 lg:row-start-1 lg:row-end-2 xl:text-[9rem] 2xl:text-[11rem] lg:leading-[0.8] 3xl:text-[19rem] lg:relative;
   word-break: break-all;
   hyphens: auto;
 }

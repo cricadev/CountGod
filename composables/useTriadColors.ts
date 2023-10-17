@@ -135,7 +135,6 @@ export function useTriadColors() {
   ])
 
   watch(colorsArray, (newVal, oldVal) => {
-    console.log(newVal);
     header.value.style.background = color.value;
     computedColorOne.value;
     computedColorTwo.value;

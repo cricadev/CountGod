@@ -79,9 +79,9 @@ export function useCountdown() {
     title.value = randomDateKey;
   }
   const now = ref(Date.now())
-  let intervalId;
+
   watchEffect(() => {
-    intervalId = setInterval(() => {
+    setInterval(() => {
       now.value = Date.now()
     }, 1000)
 
