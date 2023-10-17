@@ -14,8 +14,7 @@
           class="flex items-center lg:justify-start  gap-4 text-3xl font-normal text-center lg:text-start bg-transparent  focus:outline-none font-zenDots  w-full justify-center 2xl:text-7xl lg:text-5xl col-start-1 col-end-3 row-start-1 row-end-3 place-self-center"
           type="text" />
       </Transition>
-      <div
-        class="row-start-3 row-end-4 col-start-1 col-end-3 colors-palettes flex gap-1 relative self-end justify-self-start">
+      <div class="row-start-3 row-end-4 col-start-1 col-end-3 colors-palettes flex gap-1 relative  justify-self-start">
         <div :class="{
           'border-white scale-110': selected[index],
           'border-transparent': !selected[index]
@@ -172,7 +171,7 @@ const NewYearsCountdown = reactive({
 }
 
 .header {
-  @apply row-start-1 row-end-auto col-span-2 flex flex-col justify-center items-center lg:col-span-3 lg:row-start-1 lg:row-end-2 lg:col-start-1 lg:col-end-2 lg:items-start lg:grid lg:grid-rows-4 lg:grid-cols-2 place-items-center gap-4 px-8;
+  @apply row-start-1 row-end-auto col-span-2 flex flex-col justify-center items-center lg:col-span-3 lg:row-start-1 lg:row-end-2 lg:col-start-1 lg:col-end-2 lg:items-start lg:grid lg:grid-rows-4 lg:grid-cols-2 place-items-center gap-4 px-8 2xl:p-16;
 }
 
 .grid-numbers {
