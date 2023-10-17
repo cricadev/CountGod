@@ -5,21 +5,22 @@
 
       <Transition>
         <h1 v-if="!isEditing" @click="appearInput"
-          class="flex items-center  gap-4 text-3xl font-zenDots font-normal text-center lg:justify-start lg:items-start lg:text-start  text-white dark:text-white 2xl:text-7xl w-full justify-center lg:text-5xl col-start-1 col-end-3 row-start-1 row-end-3 place-self-center ">
+          class="flex items-center  gap-4 text-3xl font-zenDots font-normal text-center lg:justify-start lg:items-start lg:text-start  text-white dark:text-white 2xl:text-7xl w-full justify-center lg:text-5xl col-start-1 col-end-3 row-start-1 row-end-3 place-self-center 3xl:text-9xl">
           {{
             title }}
 
         </h1>
         <input ref="input" v-else v-model="newTitle" @blur="changeTitle" @keyup.enter="changeTitle"
-          class="flex items-center lg:justify-start  gap-4 text-3xl font-normal text-center lg:text-start bg-transparent  focus:outline-none font-zenDots  w-full justify-center 2xl:text-7xl lg:text-5xl col-start-1 col-end-3 row-start-1 row-end-3 place-self-center"
+          class="flex items-center lg:justify-start  gap-4 text-3xl font-normal text-center lg:text-start bg-transparent  focus:outline-none font-zenDots  w-full justify-center 2xl:text-7xl lg:text-5xl col-start-1 col-end-3 row-start-1 row-end-3 place-self-center 3xl:text-9xl"
           type="text" />
       </Transition>
-      <div class="row-start-3 row-end-4 col-start-1 col-end-3 colors-palettes flex gap-1 relative  justify-self-start">
+      <div
+        class="row-start-3 row-end-4 col-start-1 col-end-3 colors-palettes flex gap-1 relative  justify-self-start lg:self-end">
         <div :class="{
           'border-white scale-110': selected[index],
           'border-transparent': !selected[index]
         }"
-          class="w-12 h-12 rounded-full  grid grid-cols-2 grid-rows-2 overflow-hidden relative hover:scale-110 hover:border-2 lg:hover:scale-125 lg:hover:border-4 hover:border-white transition-all duration-200 border-2 lg:border-4 border-transparent"
+          class="w-12 h-12 rounded-full  grid grid-cols-2 grid-rows-2 overflow-hidden relative hover:scale-110 hover:border-2 lg:hover:scale-125 lg:hover:border-4 hover:border-white transition-all duration-200 border-2 lg:border-4 border-transparent 2xl:w-16 2xl:h-16 3xl:w-20 3xl:h-20"
           :id="'color-palette--' + index" @click="handleSelectionCreate(index)" v-for="(item, index) in colorsPalettes">
           <div class="color-palette" :style="'background:' + i" :id="'color--' + ind" v-for="(i, ind) in item">
 
@@ -175,7 +176,7 @@ const NewYearsCountdown = reactive({
 }
 
 .header {
-  @apply row-start-1 row-end-auto col-span-2 flex flex-col justify-center items-center lg:col-span-3 lg:row-start-1 lg:row-end-2 lg:col-start-1 lg:col-end-2 lg:items-start lg:grid lg:grid-rows-4 lg:grid-cols-2 place-items-center gap-4 px-8 2xl:p-16;
+  @apply row-start-1 row-end-auto col-span-2 flex flex-col justify-center items-center lg:col-span-3 lg:row-start-1 lg:row-end-2 lg:col-start-1 lg:col-end-2 lg:items-start lg:grid lg:grid-rows-4 lg:grid-cols-2 place-items-center gap-4 2xl:gap-8 px-8 2xl:px-16;
 }
 
 .grid-numbers {
