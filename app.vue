@@ -176,7 +176,7 @@ const NewYearsCountdown = reactive({
 }
 
 .header {
-  @apply row-start-1 row-end-auto col-span-2 flex flex-col justify-center items-center lg:col-span-3 lg:row-start-1 lg:row-end-2 lg:col-start-1 lg:col-end-2 lg:items-start lg:grid lg:grid-rows-4 lg:grid-cols-2 place-items-center gap-4 2xl:gap-8 px-8 2xl:px-16;
+  @apply row-start-1 row-end-auto col-span-2 flex flex-col justify-center items-center lg:col-span-3 lg:row-start-1 lg:row-end-2 lg:col-start-1 lg:col-end-2 lg:items-start lg:grid lg:grid-rows-4 lg:grid-cols-2 place-items-center gap-4 2xl:gap-8 px-8 2xl:px-16 3xl:py-12;
 }
 
 .grid-numbers {
