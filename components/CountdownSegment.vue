@@ -43,7 +43,7 @@ const props = defineProps({
   @apply tracking-tight font-normal text-center translate-x-[-50%] translate-y-[-50%] font-bebasNeue text-white absolute top-1/2 left-1/2;
   font-size: clamp(2rem, 30vw + 1rem, 14rem);
 
-  @media (min-width: 1920px) {
+  @media (min-width: 1400px) {
     font-size: clamp(2rem, 30vw + 1rem, 25rem);
   }
 

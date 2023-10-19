@@ -124,9 +124,11 @@ onMounted(() => {
   if (localStorage.getItem('title')) {
     title.value = JSON.parse(localStorage.getItem('title'))
   }
-  if (localStorage.getItem('date')) {
+  if (localStorage.getItem('date') && JSON.parse(localStorage.getItem('date')) !== 'Pick a date') {
     const dateLocal = new Date(JSON.parse(localStorage.getItem('date')))
     date.value = dateLocal.toLocaleDateString('en-us', { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' })
+  } else {
+    date.value = 'Pick a date'
   }
   if (localStorage.getItem('colorsPalettes')) {
     colorsPalettes.value = JSON.parse(localStorage.getItem('colorsPalettes'))
@@ -283,8 +285,8 @@ const NewYearsCountdown = reactive({
 
 #number--3 .number,
 #number--4 .number {
-  @apply lg:col-start-1 lg:col-end-2 lg:row-start-1 lg:row-end-2 self-end leading-none;
-  font-size: clamp(2rem, 30vw + 1rem, 50rem);
+  @apply lg:col-start-1 lg:col-end-2 lg:row-start-1 lg:row-end-2 leading-none;
+  font-size: clamp(2rem, 20vw + 1rem, 50rem);
 
 }
 
