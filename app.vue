@@ -79,9 +79,9 @@ const selected = ref([
   false,
   false,
 ]);
-onMounted(() => {
-  selected.value[0] = true;
-})
+
+
+
 const handleSelection = (ind) => {
   selected.value[ind] = true;
   selected.value.find((item, index) => {
@@ -114,6 +114,34 @@ useHead({
 const { date, label, computedDays, computedHours, computedMinutes, computedSeconds, isEditing, appearInput, changeTitle, newTitle, title, selectRandomDate } = useCountdown();
 const { colorsPalettes, colorsPalette, color, createColors, computedColorFour, computedColorThree, computedColorTwo, computedColorOne, header, createPalette } = useTriadColors()
 
+onMounted(() => {
+
+  if (localStorage.getItem('title')) {
+    title.value = JSON.parse(localStorage.getItem('title'))
+  }
+  if (localStorage.getItem('date')) {
+    date.value = JSON.parse(localStorage.getItem('date'))
+  }
+  if (localStorage.getItem('colorsPalettes')) {
+    colorsPalettes.value = JSON.parse(localStorage.getItem('colorsPalettes'))
+  }
+  if (localStorage.getItem('selected')) {
+    selected.value = JSON.parse(localStorage.getItem('selected'))
+  }
+  if (localStorage.getItem('color')) {
+    color.value = JSON.parse(localStorage.getItem('color'))
+  }
+})
+
+
+
+watch([title, date, colorsPalettes, selected, color], (newValues) => {
+  localStorage.setItem('title', JSON.stringify(newValues[0]))
+  localStorage.setItem('date', JSON.stringify(newValues[1]))
+  localStorage.setItem('colorsPalettes', JSON.stringify(newValues[2]))
+  localStorage.setItem('selected', JSON.stringify(newValues[3]))
+  localStorage.setItem('color', JSON.stringify(newValues[4]))
+})
 const NewYearsCountdown = reactive({
   days: {
     id: 1,

@@ -160,7 +160,7 @@ export function useTriadColors() {
 
     colorsArray.value = [...colors]
   }
-  createColors();
+  createColors()
   return {
     colorsPalettes,
     colorsPalette,

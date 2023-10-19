@@ -1,4 +1,5 @@
 export function useCountdown() {
+
   const isEditing = ref(false)
   const newTitle = ref("");
   const title = ref("Name the ocassion you want to track");
@@ -19,6 +20,8 @@ export function useCountdown() {
 
   const label = computed(() => typeof date.value === 'string' ? date.value : date.value.toLocaleDateString('en-us', { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' })
   )
+
+
   // initialize components based on data attribute selectors
   const currentYear = new Date().getFullYear();
 
