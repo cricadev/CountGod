@@ -250,19 +250,23 @@ const NewYearsCountdown = reactive({
   @media (min-width: 1024px) {
     grid-template-rows: 100%;
     grid-template-columns: 60% 40%;
+    place-items: center;
   }
 }
 
-#number--3 .number-label {
-  @apply lg:col-start-2 lg:col-end-3 lg:row-start-1 lg:row-end-2 lg:text-9xl xl:text-[9rem] 2xl:text-[12rem] lg:leading-[0.8] 3xl:text-[19rem] lg:relative;
-  word-break: break-all;
-  hyphens: auto;
-}
 
+#number--3 .number-label,
 #number--4 .number-label {
-  @apply lg:col-start-2 lg:col-end-3 lg:row-start-1 lg:row-end-2 xl:text-[9rem] 2xl:text-[11rem] lg:leading-[0.8] 3xl:text-[19rem] lg:relative;
-  word-break: break-all;
-  hyphens: auto;
+  @apply lg:col-start-2 lg:col-end-3 lg:row-start-1 lg:row-end-2 lg:leading-[0.8] lg:relative;
+  font-size: clamp(1rem, 10vw + 1rem, 3rem);
+
+  @media (min-width: 1024px) {
+    font-size: clamp(2rem, 10vw + 1rem, 19rem);
+    word-break: break-all;
+    hyphens: auto;
+  }
+
+
 }
 
 #number--3 .number-label::before,
@@ -279,7 +283,9 @@ const NewYearsCountdown = reactive({
 
 #number--3 .number,
 #number--4 .number {
-  @apply lg:col-start-1 lg:col-end-2 lg:row-start-1 lg:row-end-2 lg:text-[20rem] xl:text-[22rem] 2xl:text-[30rem] self-end 3xl:text-[35rem];
+  @apply lg:col-start-1 lg:col-end-2 lg:row-start-1 lg:row-end-2 self-end leading-none;
+  font-size: clamp(2rem, 30vw + 1rem, 50rem);
+
 }
 
 

@@ -21,6 +21,7 @@ const props = defineProps({
   },
 })
 
+
 </script>
 <style scoped>
 .v-enter-active,
@@ -39,15 +40,29 @@ const props = defineProps({
 }
 
 .number {
-  @apply text-[11rem] sm:text-[15rem] tracking-tight font-normal text-center translate-x-[-50%] translate-y-[-50%] font-bebasNeue text-white lg:text-[15rem] xl:text-[18rem] 2xl:text-[22rem] 3xl:text-[30rem] absolute top-1/2 left-1/2;
+  @apply tracking-tight font-normal text-center translate-x-[-50%] translate-y-[-50%] font-bebasNeue text-white absolute top-1/2 left-1/2;
+  font-size: clamp(2rem, 30vw + 1rem, 14rem);
+
+  @media (min-width: 1920px) {
+    font-size: clamp(2rem, 30vw + 1rem, 25rem);
+  }
+
+  @media (min-width: 1921px) {
+    font-size: clamp(2rem, 30vw + 1rem, 35rem);
+  }
 }
 
 .number-container {
   @apply lg:place-items-center h-full w-full relative lg:grid;
-
 }
 
 .number-label {
-  @apply text-center font-bebasNeue text-3xl text-white lg:text-8xl sm:text-5xl absolute bottom-0 left-1/2 translate-x-[-50%];
+  @apply text-start font-bebasNeue text-white absolute bottom-0 left-1/2 translate-x-[-50%] leading-none;
+
+  font-size: clamp(1rem, 10vw + 1rem, 3rem);
+
+  @media (min-width: 1024px) {
+    font-size: clamp(2rem, 30vw + 1rem, 6rem);
+  }
 }
 </style>
