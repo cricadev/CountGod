@@ -288,11 +288,11 @@ const NewYearsCountdown = reactive({
   @apply lg:col-start-1 lg:col-end-2 lg:row-start-1 lg:row-end-2 leading-none;
 
   @media (min-width: 1400px) {
-    font-size: clamp(2rem, 30vw + 1rem, 25rem);
+    font-size: clamp(2rem, 30vw + 1rem, 30rem);
   }
 
   @media (min-width: 1921px) {
-    font-size: clamp(2rem, 30vw + 1rem, 35rem);
+    font-size: clamp(2rem, 30vw + 1rem, 40rem);
   }
 }
 
