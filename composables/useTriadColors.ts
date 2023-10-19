@@ -133,15 +133,6 @@ export function useTriadColors() {
   const colorsArray = ref([
 
   ])
-
-  watch(colorsArray, (newVal, oldVal) => {
-    header.value.style.background = color.value;
-    computedColorOne.value;
-    computedColorTwo.value;
-    computedColorThree.value;
-    computedColorFour.value;
-
-  }, { deep: true });
   const computedColorOne = computed(() => {
     return colorsArray.value[0];
   })
@@ -154,6 +145,17 @@ export function useTriadColors() {
   const computedColorFour = computed(() => {
     return colorsArray.value[3];
   })
+
+  watch(colorsArray, (newVal, oldVal) => {
+    if (header.value) header.value.style.background = color.value;
+
+
+    computedColorOne.value;
+    computedColorTwo.value;
+    computedColorThree.value;
+    computedColorFour.value;
+
+  }, { deep: true });
 
   const createColors = () => {
     const colors = quintColors(hexToRgb(color.value));

@@ -125,7 +125,8 @@ onMounted(() => {
     title.value = JSON.parse(localStorage.getItem('title'))
   }
   if (localStorage.getItem('date')) {
-    date.value = JSON.parse(localStorage.getItem('date'))
+    const dateLocal = new Date(JSON.parse(localStorage.getItem('date')))
+    date.value = dateLocal.toLocaleDateString('en-us', { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' })
   }
   if (localStorage.getItem('colorsPalettes')) {
     colorsPalettes.value = JSON.parse(localStorage.getItem('colorsPalettes'))
@@ -134,12 +135,19 @@ onMounted(() => {
   if (localStorage.getItem('color')) {
     color.value = JSON.parse(localStorage.getItem('color'))
   } else {
-    color.value = '#7B61FF'
+    color.value = '#7B61FF';
+
   }
   if (localStorage.getItem('selected')) {
-    selected.value = JSON.parse(localStorage.getItem('selected'))
+    selected.value = JSON.parse(localStorage.getItem('selected'));
+    selected.value.find((item, index) => {
+      if (item) {
+        handleSelectionCreate(index)
+      }
+    })
   } else {
-    selected.value = [true, false, false, false, false, false]
+    selected.value = [true, false, false, false, false, false];
+    handleSelectionCreate(0)
   }
 })
 
@@ -150,6 +158,7 @@ watch([title, date, colorsPalettes, selected, color], (newValues) => {
   localStorage.setItem('selected', JSON.stringify(newValues[3]))
   localStorage.setItem('color', JSON.stringify(newValues[4]))
 }, { deep: true })
+
 const NewYearsCountdown = reactive({
   days: {
     id: 1,
