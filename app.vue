@@ -11,11 +11,11 @@
 
         </h1>
         <input ref="input" v-else v-model="newTitle" @blur="changeTitle" @keyup.enter="changeTitle"
-          class="flex items-center lg:justify-start  gap-4 text-3xl font-normal text-center lg:text-start bg-transparent  focus:outline-none font-zenDots  w-full justify-center 2xl:text-7xl lg:text-5xl col-start-1 col-end-3 row-start-1 row-end-3 place-self-center 3xl:text-9xl"
+          class="flex items-center lg:justify-start  gap-4 text-3xl font-normal text-center lg:text-start bg-transparent  focus:outline-none font-zenDots  w-full justify-center 2xl:text-7xl lg:text-5xl col-start-1 col-end-3 row-start-1 row-end-3 place-self-center 3xl:text-9xl text-white dark:text-white"
           type="text" />
       </Transition>
       <div
-        class="row-start-3 row-end-4 col-start-1 col-end-3 colors-palettes flex gap-1 relative  justify-self-start lg:self-end">
+        class="row-start-3 row-end-4 col-start-1 col-end-3 colors-palettes flex gap-1 relative justify-self-start lg:self-end items-center">
         <div :class="{
           'border-white scale-110': selected[index],
           'border-transparent': !selected[index]
@@ -26,20 +26,26 @@
 
           </div>
         </div>
-        <label for="color" class="border-2 text-base w-12 h-12 bg-transparent rounded-full grid place-items-center">
-          <svg v-if="colorsPalettes.length < 6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#fff"
-            class="w-6 h-6 ">
+
+        <label v-if="colorsPalettes.length < 6" for="color"
+          class="border-2 text-base w-12 h-12 bg-transparent rounded-full grid place-items-center ml-4">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#fff" class="w-6 h-6 ">
             <path fill-rule="evenodd"
               d="M12 3.75a.75.75 0 01.75.75v6.75h6.75a.75.75 0 010 1.5h-6.75v6.75a.75.75 0 01-1.5 0v-6.75H4.5a.75.75 0 010-1.5h6.75V4.5a.75.75 0 01.75-.75z"
               clip-rule="evenodd" />
           </svg>
-          <svg v-else xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-            stroke="currentColor" class="w-6 h-6">
-            <path stroke-linecap="round" stroke-linejoin="round"
-              d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
-          </svg>
-
         </label>
+        <Transition>
+          <label v-if="colorsPalettes.length === 6 && selected[5]" for="color"
+            class="border-2 text-base lg:w-8 lg:h-8 w-6 h-6 bg-transparent rounded-full grid place-items-center absolute -right-2 -top-2 bg-white hover:bg-slate-300 transition-all">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="#000" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="w-4 h-4">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
+            </svg>
+          </label>
+        </Transition>
+
         <input type="color" v-model="color" id="color" @input="handlePaletteCreation"
           class="opacity-0 pointer-events-none absolute top-0 right-0">
       </div>
@@ -79,7 +85,6 @@ const selected = ref([
   false,
   false,
 ]);
-
 
 
 const handleSelection = (ind) => {
@@ -125,15 +130,18 @@ onMounted(() => {
   if (localStorage.getItem('colorsPalettes')) {
     colorsPalettes.value = JSON.parse(localStorage.getItem('colorsPalettes'))
   }
-  if (localStorage.getItem('selected')) {
-    selected.value = JSON.parse(localStorage.getItem('selected'))
-  }
+
   if (localStorage.getItem('color')) {
     color.value = JSON.parse(localStorage.getItem('color'))
+  } else {
+    color.value = '#7B61FF'
+  }
+  if (localStorage.getItem('selected')) {
+    selected.value = JSON.parse(localStorage.getItem('selected'))
+  } else {
+    selected.value = [true, false, false, false, false, false]
   }
 })
-
-
 
 watch([title, date, colorsPalettes, selected, color], (newValues) => {
   localStorage.setItem('title', JSON.stringify(newValues[0]))
@@ -141,7 +149,7 @@ watch([title, date, colorsPalettes, selected, color], (newValues) => {
   localStorage.setItem('colorsPalettes', JSON.stringify(newValues[2]))
   localStorage.setItem('selected', JSON.stringify(newValues[3]))
   localStorage.setItem('color', JSON.stringify(newValues[4]))
-})
+}, { deep: true })
 const NewYearsCountdown = reactive({
   days: {
     id: 1,
@@ -295,5 +303,9 @@ const NewYearsCountdown = reactive({
 
 #color--4 {
   @apply col-start-2 col-end-3 row-start-1 row-end-2 bottom-0 right-0 absolute h-1/2;
+}
+
+#color-palette--5 {
+  @apply ml-4;
 }
 </style>

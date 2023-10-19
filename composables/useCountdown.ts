@@ -2,7 +2,7 @@ export function useCountdown() {
 
   const isEditing = ref(false)
   const newTitle = ref("");
-  const title = ref("Name the ocassion you want to track");
+  const title = ref("Name the ocassion to trach here")
 
   const appearInput = () => {
     isEditing.value = true;
