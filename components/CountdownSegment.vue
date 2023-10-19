@@ -44,11 +44,11 @@ const props = defineProps({
   font-size: clamp(2rem, 30vw + 1rem, 14rem);
 
   @media (min-width: 1400px) {
-    font-size: clamp(2rem, 30vw + 1rem, 25rem);
+    font-size: clamp(2rem, 30vw + 1rem, 20rem);
   }
 
   @media (min-width: 1921px) {
-    font-size: clamp(2rem, 30vw + 1rem, 35rem);
+    font-size: clamp(2rem, 30vw + 1rem, 25rem);
   }
 }
 
